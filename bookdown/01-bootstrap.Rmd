@@ -14,8 +14,11 @@ that estimate the distribution of a population by means of resampling.
 > population.
 
 To generate a random bootstrap sample by \(x\) resampling, generate \(n\)
-evenly distributed random integers in the set \(1, ..., n{}\) and select
+uniformly distributed random integers in the set \(1, ..., n{}\) and select
 the bootstrap sample as \(x^{*} = (x_{i_{1}}, ..., x_{i_{n}})\).
+
+\[ F \rightarrow X \rightarrow F_{n} \\
+   F_{n} \rightarrow X^{*} \rightarrow F_{n}^{*}. \]
 
 ```{example}
 Suppose we observe the following data:
