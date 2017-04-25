@@ -5,6 +5,8 @@
 **Summaries and study notes of the discipline:
   [Computational Methods in Statistics](http://estatcomp.github.io/)**
 
+> [Summaries and study notes](http://mynameislaure.github.io/cms/)
+
 ***
 
 Program:
