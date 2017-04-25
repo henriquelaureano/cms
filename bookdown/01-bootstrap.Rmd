@@ -1,0 +1,98 @@
+# Bootstrap {-}
+
+***
+
+```{definition}
+Bootstrap strategies compose a class of non-parametric Monte Carlo methods
+that estimate the distribution of a population by means of resampling.
+```
+
+
+
+> Resampling methods treat samples as a finite population, from which
+> samples are taken to estimate features and make inferences about this
+> population.
+
+To generate a random bootstrap sample by \(x\) resampling, generate \(n\)
+evenly distributed random integers in the set \(1, ..., n{}\) and select
+the bootstrap sample as \(x^{*} = (x_{i_{1}}, ..., x_{i_{n}})\).
+
+```{example}
+Suppose we observe the following data:
+
+\(x = {2, 2, 1, 1, 5, 4, 4, 3, 1, 2}\).
+
+Resampling from \(x\), we select \(\{1, 2, 3, 4, 5\}\) with
+probabilities \(\{0.3, 0.3, 0.1, 0.2, 0.1\}\). The \(F_{X^{*}}(x)\)
+distribution of a sample taken at random is exactly the function
+\(F_{n}\):
+
+\[ F_{X^{*}}(x) = F_{n}(x) = \begin{cases}
+                              0.0 & x < 1; \\ 
+                              0.3 & 1 \leq x < 2; \\ 
+                              0.6 & 2 \leq x < 3; \\ 
+                              0.7 & 3 \leq x < 4; \\ 
+                              0.9 & 4 \leq x < 5; \\
+                              1.0 & x \geq 5.
+                             \end{cases}
+\]
+```
+
+## Standard error boostrap estimate {-}
+
+The bootstrap estimate of the standard error of an estimator
+\(\hat{\theta}\) is the sample standard error of the bootstrap 
+replicates \(\hat{\theta}^{(1)}, ..., \hat{\theta}^{(B)}\):
+
+\[ \text{se}(\hat{\theta}^{*}) =
+   \sqrt{\frac{1}{B - 1}
+         \sum_{b = 1}^{B} (\hat{\theta}^{(b)} - \bar{\theta}^{*})^{2}},
+         \\
+   \bar{\theta}^{*} = \frac{1}{B} \sum_{b = 1}^{B} \hat{\theta}^{(b)}.
+\]
+
+Where \(B\) is the number of replicates.
+
+```{example, name="Correlation"}
+```
+
+(ref:corr) A scatterplot of the `speed` and `dist` variables of the 
+           `cars` dataframe.
+
+```{r, fig.cap='(ref:corr)', fig.align='center', message=FALSE, comment=NA}
+lattice::xyplot(dist ~ speed, cars, pch = 16, ylab = list(rot = 0))
+
+set.seed(1)
+B <- 10e3
+boot.corr <- vector('numeric', B)
+for (b in 1:B){
+  ind <- sample(nrow(cars), replace = TRUE)
+  boot.corr[b] <- with(cars[ind, ], cor(dist, speed))
+}
+(theta.star <- mean(boot.corr))
+
+(se.theta.star <- sd(boot.corr))
+```
+
+## Bias bootstrap estimate {-}
+
+The definition of bias is given by:
+
+\[ B(\hat{\theta}) = E(\hat{\theta}) - \theta. \]
+
+Thus, the bias bootsrap estimate is:
+
+\[ \hat{B(\hat{\theta})} = \bar{\hat{\theta}^{*}} - \theta, \]
+
+expression in which \(\bar{\hat{\theta}^{*}} =
+\frac{1}{B} \sum_{b = 1}^{B} \hat{\theta}^{(b)}\) and \(\hat{\theta}\)
+is the estimate calculated using the original sample.
+
+```{example, name="Correlation"}
+```
+
+```{r, comment=NA}
+theta.star - with(cars, cor(dist, speed))
+```
+
+***

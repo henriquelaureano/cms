@@ -1,0 +1,53 @@
+# Permutation tests {-}
+
+***
+
+- Resampling is used without replacement
+
+They are applied for general hypotheses tests:
+
+\[ X_{1}, ..., X_{n} \sim F
+   \quad \text{ and } \quad
+   Y_{1}, ..., Y_{m} \sim G \\
+   H_{0} : F = G \quad \text{ vs.} \quad H_{1} : F \neq G
+\]
+
+- Permutation tests can be performed to check for independence, 
+  homogeneity, tests for more than 2 groups, etc.
+
+Let \(Z\) be the ordered set \(\{X_{1}, ..., X_{n}, Y_{1}, ..., Y_{m}\}\)
+indexed by the indices
+\(\nu = \{1, ..., n, n + 1, ..., n + m\} = \{1, ..., N\}\).
+
+Under \(H_{0}\), the chance to select \(n\) elements of \(Z\) is
+
+\[ \frac{1}{\binom{N}{n}} = \frac{n! m!}{N!}. \]
+
+(ref:permutation) A representation of a permutation test.
+           
+```{r fig.cap='(ref:permutation)', fig.align='center'}
+knitr::include_graphics("iBagens/permutation.png")
+```
+
+```{example name="Birth weight of chickens according 2 diets"}
+```
+
+```{r, comment=NA}
+data("chickwts")
+
+(x <- with(chickwts, sort(as.vector(weight[feed == "soybean"]))))
+(y <- with(chickwts, sort(as.vector(weight[feed == "linseed"]))))
+
+r = 100
+z = c(x, y)
+k = length(z)
+t.s = vector("numeric", r)
+t = t.test(x, y)$statistic
+for (i in 1:r){
+    ks = sample(k, size = length(x), replace = FALSE)
+    t.s[i] = t.test(z[ks], z[-ks])$statistic
+}
+(p <- mean(c(t, t.s) >= t))
+```
+
+***
