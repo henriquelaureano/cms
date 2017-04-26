@@ -41,7 +41,7 @@ distribution of a sample taken at random is exactly the function
 \]
 ```
 
-## Standard error boostrap estimate {-}
+## Bootstrap estimation of standard error {-}
 
 The bootstrap estimate of the standard error of an estimator
 \(\hat{\theta}\) is the sample standard error of the bootstrap 
@@ -77,19 +77,33 @@ for (b in 1:B){
 (se.theta.star <- sd(boot.corr))
 ```
 
-## Bias bootstrap estimate {-}
+## Bootstrap estimation of bias {-}
 
 The definition of bias is given by:
 
 \[ B(\hat{\theta}) = E(\hat{\theta}) - \theta. \]
 
-Thus, the bias bootsrap estimate is:
+Thus, the bootsrap estimate of bias is:
 
 \[ \hat{B(\hat{\theta})} = \bar{\hat{\theta}^{*}} - \theta, \]
 
 expression in which \(\bar{\hat{\theta}^{*}} =
 \frac{1}{B} \sum_{b = 1}^{B} \hat{\theta}^{(b)}\) and \(\hat{\theta}\)
 is the estimate calculated using the original sample.
+
+> Every statistic is an unbiased estimator of its expected value, and
+  in particular, the sample mean of a random sample is an unbiased
+  estimator of the mean of the distribution. An example of a biased
+  estimator is the maximum likelihood estimator of variance, 
+  \(\hat{\sigma}^{2} =
+    \frac{1}{n} \sum_{i = 1}^{n} (X_{i} - \bar{X})^{2}\), which has
+  expected value \((1 - 1/n) \sigma^{2}\). Thus, \(\hat{\sigma}^{2}\)
+  underestimates \(\sigma^{2}\), and the bias is \(-\sigma^{2}/n\).
+
+> In bootstrap \(F_{n}\) is sampled in place of \(F_{X}\), so we
+  replace \(\theta\) with \(\hat{\theta}\) to estimate the bias.
+  Positive bias indicates that \(\hat{\theta}\) on average tends to
+  overestimate \(\theta\).
 
 ```{example, name="Correlation"}
 ```
