@@ -14,6 +14,11 @@ documentclass: book
 **Summaries and study notes of the discipline:
   [Computational Methods in Statistics](http://estatcomp.github.io/)**
 
+Summaries and study notes taken from the book:
+
+> Maria L. Rizzo, 2008. *Statistical Computing with R*,
+  Chapman & Hall/CRC, ISBN 1-58488-545-9, 393 pages.
+
 ***
 
 Program:
