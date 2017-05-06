@@ -35,7 +35,7 @@ Exercises from chapter 8 of the book:
 
 Solution:
 
-```{r, fig.width=10, fig.show='hold'}
+```{r, fig.width=10, fig.show='hold', message=FALSE}
 data("chickwts")
 
 ## Packages
@@ -120,7 +120,7 @@ print(cvm_8.2, position = c(.5, 0, 1, 1))
 
 Solution:
 
-```{r, fig.width=10, fig.show='hold'}
+```{r, fig.width=10, fig.show='hold', message=FALSE, comment=NA}
 data("iris")
 
 ## Dataset
