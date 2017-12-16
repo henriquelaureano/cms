@@ -1,11 +1,11 @@
-# Computational Methods in Statistics (CMS)
+# Computational methods in Statistics (CMS)
 
 ***
 
-**Summaries and study notes of the discipline:
-  [Computational Methods in Statistics](http://estatcomp.github.io/)**
+**Summaries and study notes for the course:
+  [Computational methods in Statistics](http://estatcomp.github.io/)**
 
-> [**Summaries and study notes**](http://mynameislaure.github.io/cms/)
+> [**Summaries and study notes**](http://mynameislaure.github.io/academic_courses/cms/)
 
 ***
 
